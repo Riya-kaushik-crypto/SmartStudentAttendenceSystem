@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Attendance System</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    button {
+        padding: 8px 15px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #218838;
+    }
+
+    .present {
+        color: green;
+        font-weight: bold;
+    }
+
+    .absent {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Student Attendance</h1>
+
+    <table id="attendanceTable">
+        <thead>
+            <tr>
+                <th>Roll No.</th>
+                <th>Student Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Aman Kumar</td>
+                <td>
+                    <select>
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Priya Sharma</td>
+                <td>
+                    <select>
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Rahul Singh</td>
+                <td>
+                    <select>
+                        <option value="Present">Present</option>
+                        <option value="Absent">Absent</option>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <button onclick="saveAttendance()">Save Attendance</button>
+    <div id="result"></div>
+</div>
+<script>
+function saveAttendance() {
+    let rows = document.querySelectorAll("#attendanceTable tbody tr");
+    let output = "<h3>Attendance Report</h3>";
+
+    rows.forEach(row => {
+        let name = row.cells[1].innerText;
+        let status = row.querySelector("select").value;
+
+        output += `
+            <p>${name}: 
+            <span class="${status.toLowerCase()}">${status}</span>
+            </p>`;
+    });
+
+    document.getElementById("result").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
